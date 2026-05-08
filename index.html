@@ -3,127 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مولد الإلهام</title>
+    <title>AI Inspiration Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --neon-color: #00ffcc;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #0a0a0a;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            overflow: hidden;
-            transition: background 0.5s ease;
-        }
-        .container {
-            text-align: center;
-            padding: 40px;
-            border: 2px solid var(--neon-color);
-            border-radius: 20px;
-            box-shadow: 0 0 20px var(--neon-color), inset 0 0 10px var(--neon-color);
-            max-width: 80%;
-            background: rgba(0, 0, 0, 0.8);
-            position: relative;
-        }
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--neon-color);
-            text-shadow: 0 0 10px var(--neon-color);
-        }
-        #quote {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            min-height: 100px;
-            line-height: 1.4;
-        }
-        button {
-            background: transparent;
-            color: var(--neon-color);
-            border: 2px solid var(--neon-color);
-            padding: 10px 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: 0.3s;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-        button:hover {
-            background: var(--neon-color);
-            color: #000;
-            box-shadow: 0 0 30px var(--neon-color);
-        }
-        /* تصميم أيقونة الإنستغرام */
-        .instagram-link {
-            display: block;
-            color: var(--neon-color);
-            font-size: 2rem;
-            text-decoration: none;
-            transition: 0.3s;
-            margin-top: 10px;
-        }
-        .instagram-link:hover {
-            transform: scale(1.2);
-            text-shadow: 0 0 15px var(--neon-color);
-        }
-        .footer {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            color: #555;
-        }
+        :root { --neon-color: #00ffcc; }
+        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #050505; font-family: 'Segoe UI', sans-serif; color: white; transition: 0.5s; }
+        
+        .container { text-align: center; padding: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; background: rgba(15, 23, 42, 0.9); box-shadow: 0 0 40px rgba(0,0,0,0.5); max-width: 450px; width: 90%; }
+        
+        h1 { font-size: 1.2rem; color: var(--neon-color); text-shadow: 0 0 10px var(--neon-color); letter-spacing: 2px; margin-bottom: 25px; }
+
+        .mood-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        .mood-btn { background: #1e293b; border: 1px solid #334155; color: #94a3b8; padding: 10px; border-radius: 12px; cursor: pointer; font-size: 0.8rem; transition: 0.3s; }
+        .mood-btn:hover, .mood-btn.active { border-color: var(--neon-color); color: white; background: rgba(0, 255, 204, 0.1); }
+
+        #quote-box { min-height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border-top: 1px solid #334155; padding-top: 20px; }
+        #quote { font-size: 1.4rem; font-weight: 500; line-height: 1.5; transition: 0.4s; }
+
+        .action-btn { background: var(--neon-color); color: #000; border: none; padding: 12px 30px; font-size: 1rem; cursor: pointer; border-radius: 50px; font-weight: bold; width: 100%; box-shadow: 0 4px 15px rgba(0,255,204,0.3); transition: 0.3s; }
+        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--neon-color); }
+
+        .social-links { margin-top: 25px; display: flex; justify-content: center; gap: 20px; }
+        .social-links a { color: var(--neon-color); font-size: 1.5rem; transition: 0.3s; opacity: 0.7; }
+        .social-links a:hover { opacity: 1; transform: scale(1.2); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>✨ جرعة إلهام</h1>
-        <div id="quote">اضغط على الزر للحصول على حكمة اليوم..</div>
-        <button onclick="generateQuote()">اقتباس جديد</button>
+        <h1>INTELLIGENT QUOTES</h1>
         
-        <a href="https://www.instagram.com/MC__q" target="_blank" class="instagram-link">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
+        <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">بماذا تشعر الآن؟</p>
+        <div class="mood-selector">
+            <button class="mood-btn active" onclick="setMood('energy', this)">⚡ طاقة</button>
+            <button class="mood-btn" onclick="setMood('calm', this)">🌙 هدوء</button>
+            <button class="mood-btn" onclick="setMood('work', this)">💻 عمل</button>
+        </div>
+
+        <div id="quote-box">
+            <div id="quote">اختر حالتك واضغط لتوليد الإلهام..</div>
+        </div>
+
+        <button class="action-btn" onclick="generateAIQuote()">توليد اقتباس ذكي</button>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/MC__q" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        </div>
     </div>
 
-    <div class="footer">تم التطوير بواسطة Vercel & GitHub</div>
-
     <script>
-        const quotes = [
-            "لا تتوقف عندما تتعب، توقف عندما تنتهي.",
-            "النجاح هو الانتقال من فشل إلى فشل دون فقدان الحماس.",
-            "أفضل طريقة لتوقع المستقبل هي أن تخترعه.",
-            "كل إنجاز عظيم بدأ بقرار أن تحاول.",
-            "البساطة هي قمة الرقي.",
-            "ما تركز عليه ينمو، وما تقاومه يستمر.",
-            "الجمال في العقل وليس في الملامح.",
-            "ابدأ حيث أنت، استخدم ما تملك، افعل ما تستطيع."
-        ];
+        let currentMood = 'energy';
+        const aiDatabase = {
+            energy: [
+                "أنت تمتلك القوة لصناعة واقعك الخاص، ابدأ الآن.",
+                "العالم ينتظر لمستك الإبداعية، لا تتردد.",
+                "كل ثانية هي فرصة جديدة لتغيير كل شيء.",
+                "الطاقة لا تُفنى، بل تتحول إلى إنجازات عظيمة."
+            ],
+            calm: [
+                "السكينة تبدأ من الداخل، تنفس بعمق.",
+                "لا تجعل ضجيج العالم يحجب صوت هدوئك.",
+                "كل شيء سيأتي في وقته المناسب، كن صبوراً.",
+                "الجمال يسكن في اللحظات الهادئة والبسيطة."
+            ],
+            work: [
+                "التركيز هو العملة الجديدة، استثمرها بذكاء.",
+                "الإتقان ليس فعلاً، بل هو عادة يومية.",
+                "أفضل طريق لإنهاء العمل هو البدء فيه فوراً.",
+                "النجاح يتطلب انضباطاً أكثر مما يتطلب حماساً."
+            ]
+        };
 
-        const colors = ['#00ffcc', '#ff00ff', '#ffff00', '#007bff', '#ff4500', '#adff2f'];
+        const colors = { energy: '#00ffcc', calm: '#a78bfa', work: '#fbbf24' };
 
-        function generateQuote() {
-            const quoteElement = document.getElementById('quote');
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        function setMood(mood, btn) {
+            currentMood = mood;
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.documentElement.style.setProperty('--neon-color', colors[mood]);
+        }
 
-            quoteElement.style.opacity = 0;
+        function generateAIQuote() {
+            const qElement = document.getElementById('quote');
+            const options = aiDatabase[currentMood];
+            const result = options[Math.floor(Math.random() * options.length)];
+            
+            qElement.style.opacity = 0;
+            qElement.style.transform = "translateY(10px)";
+            
             setTimeout(() => {
-                quoteElement.innerText = randomQuote;
-                quoteElement.style.opacity = 1;
-                document.documentElement.style.setProperty('--neon-color', randomColor);
-            }, 200);
+                qElement.innerText = result;
+                qElement.style.opacity = 1;
+                qElement.style.transform = "translateY(0)";
+            }, 300);
         }
     </script>
 </body>
