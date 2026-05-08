@@ -3,37 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Inspiration Hub</title>
+    <title>AI Mega Inspiration - 200+ Quotes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root { --neon-color: #00ffcc; }
-        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #050505; font-family: 'Segoe UI', sans-serif; color: white; transition: 0.5s; }
-        
-        .container { text-align: center; padding: 30px; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; background: rgba(15, 23, 42, 0.9); box-shadow: 0 0 40px rgba(0,0,0,0.5); max-width: 450px; width: 90%; }
-        
-        h1 { font-size: 1.2rem; color: var(--neon-color); text-shadow: 0 0 10px var(--neon-color); letter-spacing: 2px; margin-bottom: 25px; }
-
-        .mood-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
-        .mood-btn { background: #1e293b; border: 1px solid #334155; color: #94a3b8; padding: 10px; border-radius: 12px; cursor: pointer; font-size: 0.8rem; transition: 0.3s; }
-        .mood-btn:hover, .mood-btn.active { border-color: var(--neon-color); color: white; background: rgba(0, 255, 204, 0.1); }
-
-        #quote-box { min-height: 120px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border-top: 1px solid #334155; padding-top: 20px; }
-        #quote { font-size: 1.4rem; font-weight: 500; line-height: 1.5; transition: 0.4s; }
-
-        .action-btn { background: var(--neon-color); color: #000; border: none; padding: 12px 30px; font-size: 1rem; cursor: pointer; border-radius: 50px; font-weight: bold; width: 100%; box-shadow: 0 4px 15px rgba(0,255,204,0.3); transition: 0.3s; }
-        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--neon-color); }
-
-        .social-links { margin-top: 25px; display: flex; justify-content: center; gap: 20px; }
-        .social-links a { color: var(--neon-color); font-size: 1.5rem; transition: 0.3s; opacity: 0.7; }
-        .social-links a:hover { opacity: 1; transform: scale(1.2); }
+        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #020617; font-family: 'Segoe UI', sans-serif; color: white; transition: 0.5s; overflow-x: hidden; }
+        .container { text-align: center; padding: 30px; border: 1px solid rgba(255,255,255,0.05); border-radius: 30px; background: rgba(15, 23, 42, 0.95); box-shadow: 0 20px 50px rgba(0,0,0,0.8); max-width: 500px; width: 90%; position: relative; z-index: 1; }
+        h1 { font-size: 1rem; color: var(--neon-color); text-shadow: 0 0 15px var(--neon-color); letter-spacing: 3px; margin-bottom: 20px; opacity: 0.8; }
+        .mood-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+        .mood-btn { background: #1e293b; border: 1px solid #334155; color: #94a3b8; padding: 12px; border-radius: 15px; cursor: pointer; font-size: 0.85rem; transition: 0.3s; font-weight: bold; }
+        .mood-btn.active { border-color: var(--neon-color); color: white; background: rgba(0, 255, 204, 0.1); box-shadow: 0 0 15px var(--neon-color); }
+        #quote-box { min-height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding: 20px; position: relative; }
+        #quote { font-size: 1.25rem; font-weight: 500; line-height: 1.7; transition: 0.5s; text-align: center; }
+        .action-btn { background: var(--neon-color); color: #000; border: none; padding: 18px; font-size: 1.1rem; cursor: pointer; border-radius: 18px; font-weight: 900; width: 100%; transition: 0.3s; box-shadow: 0 5px 20px rgba(0,255,204,0.2); }
+        .action-btn:hover:not(:disabled) { transform: scale(1.02); box-shadow: 0 10px 30px var(--neon-color); }
+        .action-btn:disabled { background: #1e293b; color: #475569; cursor: not-allowed; opacity: 0.5; }
+        .social-links { margin-top: 25px; display: flex; justify-content: center; gap: 25px; border-top: 1px solid rgba(255,255,255,0.05); pt: 20px; }
+        .social-links a { color: var(--neon-color); font-size: 1.8rem; transition: 0.4s; }
+        .social-links a:hover { transform: translateY(-5px) rotate(10deg); filter: drop-shadow(0 0 8px var(--neon-color)); }
+        #stats { font-size: 0.75rem; color: #64748b; margin-top: 15px; font-weight: bold; }
+        .bg-glow { position: absolute; width: 300px; height: 300px; background: var(--neon-color); filter: blur(150px); opacity: 0.1; z-index: 0; pointer-events: none; }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
     <div class="container">
-        <h1>INTELLIGENT QUOTES</h1>
+        <h1>UNLIMITED INSPIRATION</h1>
         
-        <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">بماذا تشعر الآن؟</p>
         <div class="mood-selector">
             <button class="mood-btn active" onclick="setMood('energy', this)">⚡ طاقة</button>
             <button class="mood-btn" onclick="setMood('calm', this)">🌙 هدوء</button>
@@ -41,62 +38,180 @@
         </div>
 
         <div id="quote-box">
-            <div id="quote">اختر حالتك واضغط لتوليد الإلهام..</div>
+            <div id="quote">مستعد لتصفح أكثر من 200 اقتباس فريد؟</div>
         </div>
 
-        <button class="action-btn" onclick="generateAIQuote()">توليد اقتباس ذكي</button>
+        <button id="mainBtn" class="action-btn" onclick="generateUniqueQuote()">أعطني اقتباساً جديداً</button>
         
+        <div id="stats">الاقتباسات المتبقية في هذا القسم: <span id="count">--</span></div>
+
         <div class="social-links">
             <a href="https://www.instagram.com/MC__q" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
     </div>
 
     <script>
-        let currentMood = 'energy';
-        const aiDatabase = {
+        const masterDatabase = {
             energy: [
-                "أنت تمتلك القوة لصناعة واقعك الخاص، ابدأ الآن.",
-                "العالم ينتظر لمستك الإبداعية، لا تتردد.",
-                "كل ثانية هي فرصة جديدة لتغيير كل شيء.",
-                "الطاقة لا تُفنى، بل تتحول إلى إنجازات عظيمة."
+                "النجاح هو أن تنتقل من فشل إلى فشل دون أن تفقد حماسك.", "طريق الألف ميل يبدأ بخطوة واحدة.",
+                "لا تتوقف عندما تتعب، توقف عندما تنتهي.", "كل إنجاز عظيم كان يعتبر مستحيلاً في البداية.",
+                "ثق بنفسك، فأنت تعرف أكثر مما تعتقد.", "الحياة قصيرة، اجعلها رائعة.",
+                "أفضل طريقة لتوقع المستقبل هي ابتكاره.", "النجاح ليس نهائياً، والفشل ليس قاتلاً.",
+                "اجعل من كل يوم شاهداً على تقدمك.", "الإرادة هي ما يدفعك للبدء، والعادة هي ما تجعلك تستمر.",
+                "لا تنظر إلى الخلف، أنت لن تسير في ذلك الاتجاه.", "المستحيل هو كلمة توجد فقط في قاموس الحمقى.",
+                "الفرق بين الشخص الناجح والآخرين ليس نقص القوة، بل نقص الإرادة.", "كل صباح هو فرصة جديدة لتكون أفضل.",
+                "لا تحلم بالنجاح، بل اعمل من أجله.", "توقف عن قول 'سأفعل' وابدأ بقول 'أنا أفعل'.",
+                "أكبر مغامرة يمكنك القيام بها هي أن تعيش حياة أحلامك.", "الخوف هو مجرد وهم، لا تدعه يوقفك.",
+                "إذا كنت تستطيع تخيله، يمكنك تحقيقه.", "كن التغيير الذي تريد أن تراه في العالم.",
+                "الفرص لا تأتي بالصدفة، نحن من نصنعها.", "الفشل هو مجرد فرصة للبدء من جديد بذكاء أكبر.",
+                "العزيمة هي سر النجاح.", "لا تقارن نفسك بالآخرين، قارن نفسك بما كنت عليه بالأمس.",
+                "أنت أقوى مما تظن.", "السعادة ليست محطة نصل إليها، بل هي وسيلة للسفر.",
+                "كن متفائلاً بما يكفي لترى الفرص في كل مكان.", "الإبداع هو رؤية ما يراه الجميع والتفكير بما لم يفكر به أحد.",
+                "لا تدع يومك يمر دون أن تتعلم شيئاً جديداً.", "اجعل شغفك هو دليلك.",
+                "النجاح هو مجموع خطوات صغيرة تتكرر يوماً بعد يوم.", "لا شيء مستحيل إذا كنت تملك الإيمان.",
+                "استمتع بالرحلة بقدر استمتاعك بالوصول.", "الحياة لا تمنحك ما تريد، بل تمنحك ما تعمل من أجله.",
+                "كن أنت النسخة الأفضل من نفسك.", "التحديات هي ما يجعل الحياة مثيرة.",
+                "الفوز الحقيقي هو أن تتغلب على مخاوفك.", "لا تقلل من شأن نفسك أبداً.",
+                "اليوم هو يوم رائع لتحقيق شيء مذهل.", "اعمل بصمت واترك نجاحك يحدث الضجيج.",
+                "كلما عملت بجد أكبر، زاد حظك.", "لا تنتظر الوقت المناسب، ابدأ الآن.",
+                "النجاح يبدأ برغبة قوية.", "أنت بطل قصتك الخاصة.",
+                "اجعل هدفك عالياً ولا تتوقف حتى تصل إليه.", "ثق أن الأفضل لم يأتِ بعد.",
+                "التميز ليس فعلاً بل عادة.", "كل نهاية هي بداية لشيء جديد.",
+                "اجعل طاقتك تجذب ما تحب.", "لا تستسلم أبداً.",
+                "العمر مجرد رقم، الروح هي ما يهم.", "كن شجاعاً بما يكفي لاتباع قلبك.",
+                "النجاح يحتاج إلى صبر ومثابرة.", "ابتسم، فالحياة تستحق ذلك.",
+                "أنت تمتلك القدرة على تغيير العالم.", "ركز على الحلول وليس المشاكل.",
+                "كن إيجابياً وتوقع الأفضل.", "العمل هو مفتاح النجاح.",
+                "لا تسمح لأحد بأن يطفئ نورك.", "الحياة تجارب، فتعلم منها.",
+                "كن ممتناً لما تملك.", "ابدأ صغيرًا وفكر كبيرًا.",
+                "كل يوم هو صفحة جديدة في كتاب حياتك.", "القوة تكمن في الاستمرار.",
+                "لا تخف من الفشل، بل خف من عدم المحاولة.", "النجاح يبدأ من الداخل.",
+                "كن صادقاً مع نفسك.", "الشغف هو الوقود للإنجاز.",
+                "تحدَّ نفسك كل يوم.", "الحياة جميلة لمن يراها كذلك.",
+                "أنت معجزة في حد ذاتك."
             ],
             calm: [
-                "السكينة تبدأ من الداخل، تنفس بعمق.",
-                "لا تجعل ضجيج العالم يحجب صوت هدوئك.",
-                "كل شيء سيأتي في وقته المناسب، كن صبوراً.",
-                "الجمال يسكن في اللحظات الهادئة والبسيطة."
+                "السكينة تبدأ بالرضا.", "الهدوء هو قمة القوة.", 
+                "تنفس بعمق، كل شيء سيمر.", "السلام الداخلي لا يقدر بثمن.",
+                "كن هادئاً لترى الأشياء بوضوح.", "الصمت لغة العظماء.",
+                "الراحة في ذكر الله والتوكل عليه.", "لا تحمل هم الغد، فاليوم يكفيك.",
+                "القلب الهادئ هو بيت الحكمة.", "الحياة أجمل عندما نبسطها.",
+                "تقبل ما لا يمكنك تغييره.", "الهدوء يمنحك السيطرة على المواقف.",
+                "ابتعد عن كل ما يزعج هدوءك.", "السعادة هي لحظة امتنان في صمت.",
+                "كن كالماء، ينساب بهدوء بين الصخور.", "التأمل هو غذاء الروح.",
+                "السكينة هي أن تكون في سلام مع عيوبك.", "الكلمة اللطيفة تبرد القلب.",
+                "الهدوء ليس ضعفاً، بل هو ثبات.", "استمتع بالهدوء قبل العاصفة وبعدها.",
+                "الجمال في البساطة والهدوء.", "لا تسرع، فكل شيء يحدث في وقته.",
+                "اجعل من بيتك واحة للهدوء.", "القلب الصافي يرى الحقيقة.",
+                "الهدوء هو مفتاح الإبداع.", "كن لطيفاً مع نفسك ومع الآخرين.",
+                "الحياة رحلة قصيرة، فلا داعي للقلق.", "الراحة النفسية تبدأ بكلمة 'لا' لكل ما يؤذيك.",
+                "انظر إلى النجوم واشعر بمدى هدوئها.", "الطبيعة هي أفضل مكان للاسترخاء.",
+                "الهدوء يعيد شحن طاقتك.", "كن مستمعاً جيداً لتفهم العالم.",
+                "الصبر هو رفيق الهدوء.", "السماء الصافية تعكس صفاء روحك.",
+                "لا تجعل الضجيج الخارجي يفسد هدوءك الداخلي.", "السكينة هي أغلى كنز.",
+                "تعلم فن التخلي لترتاح.", "الهدوء يجعل قراراتك أصوب.",
+                "ابتسم في وجه الصعاب بهدوء.", "الليل سكون والنهار عمل، فاستمتع بكليهما.",
+                "القلب الذي يسامح هو قلب مرتاح.", "كن في سلام مع ماضيك.",
+                "الهدوء يقلل من التوتر ويزيد من الصحة.", "اقرأ كتاباً، استمع لموسيقى هادئة، ارتح.",
+                "الحكمة تأتي مع السكون.", "لا تتفاعل مع كل شيء، بعض الصمت ذهب.",
+                "الهدوء يحسن جودة حياتك.", "كن ممتناً للحظات الهدوء.",
+                "الحياة توازن بين العمل والراحة.", "السكينة هي أن تعرف أنك فعلت ما بوسعك.",
+                "الهدوء هو لغة الروح.", "ابحث عن السعادة في الأشياء الصغيرة.",
+                "القلب المتفائل هو قلب هادئ.", "الهدوء يجذب الطاقة الإيجابية.",
+                "كن رحيماً بنفسك.", "الهدوء يعزز التركيز.",
+                "الصمت هو أبلغ تعبير عن الفهم.", "السكينة في القناعة.",
+                "الهدوء يعلمك الكثير عن نفسك.", "استمتع باللحظة الحالية.",
+                "الهدوء هو رداء الحكماء.", "الراحة في العفو.",
+                "كن منبعاً للسلام لمن حولك.", "الهدوء يطيل العمر ويجمل الوجه.",
+                "السعادة في الصفاء الذهني.", "الهدوء يجعلك ترى الفرص.",
+                "كن مخلصاً لهدوئك.", "الحياة قصيرة جداً على الغضب.",
+                "الهدوء هو قوة صامتة.", "السكينة في الحب والعطاء."
             ],
             work: [
-                "التركيز هو العملة الجديدة، استثمرها بذكاء.",
-                "الإتقان ليس فعلاً، بل هو عادة يومية.",
-                "أفضل طريق لإنهاء العمل هو البدء فيه فوراً.",
-                "النجاح يتطلب انضباطاً أكثر مما يتطلب حماساً."
+                "العمل الجاد هو مفتاح النجاح.", "الانضباط هو الفرق بين ما تريد الآن وما تريده بشدة.",
+                "الإتقان أمانة.", "لا تؤجل عمل اليوم إلى الغد.",
+                "النجاح يتطلب تضحية وعملاً شاقاً.", "كن محترفاً في كل ما تفعل.",
+                "العمل الجماعي يحقق المستحيل.", "التركيز هو سر الإنتاجية.",
+                "التعلم المستمر هو طريق التطور.", "اجعل عملك يتحدث عنك.",
+                "الأهداف هي وقود الطموح.", "التخطيط الجيد هو نصف العمل.",
+                "الإبداع في العمل يجعله ممتعاً.", "كن صبوراً في بناء مستقبلك.",
+                "النجاح يبدأ بقرار المحاولة.", "التميز ليس خياراً بل ضرورة.",
+                "استثمر في نفسك، فهي أفضل استثمار.", "التفاصيل الصغيرة تصنع الفرق الكبير.",
+                "القيادة هي القدرة على تحويل الرؤية إلى حقيقة.", "العمل بذكاء أهم من العمل بجهد فقط.",
+                "لا تتوقف عن التعلم حتى لو أصبحت خبيراً.", "الوقت هو أثمن مورد لديك.",
+                "الالتزام هو أساس النجاح.", "كن مبادراً ولا تنتظر الأوامر.",
+                "الفشل في التخطيط هو تخطيط للفشل.", "الثقة بالنفس هي أول أسرار النجاح.",
+                "اجعل هدفك هو التميز وليس فقط النجاح.", "التعاون يقلل الجهد ويزيد النتائج.",
+                "كن مخلصاً لعملك يحبك الناس.", "العمل عبادة.",
+                "الطموح لا حدود له.", "النجاح هو رحلة وليس وجهة.",
+                "كن منظماً لتكون منتجاً.", "العقبات هي فرص للتعلم والنمو.",
+                "الصدق في العمل أساس البركة.", "كن قدوة حسنة لزملائك.",
+                "التحفيز الذاتي هو أقوى دافع.", "التغيير يبدأ منك.",
+                "الاستمرارية هي سر العظمة.", "كن منفتحاً على الأفكار الجديدة.",
+                "التحدي هو ما يبرز المعادن الحقيقية.", "النجاح يحتاج إلى شجاعة لاتخاذ القرار.",
+                "كن مرناً في التعامل مع المشكلات.", "العمل المتقن يدوم طويلاً.",
+                "الأهداف الواضحة تؤدي لنتائج واضحة.", "استخدم مهاراتك لتنفع الآخرين.",
+                "النجاح طعمه أحلى بعد التعب.", "كن شغوفاً بما تفعل.",
+                "التطوير الذاتي لا ينتهي.", "الإرادة القوية تكسر المستحيل.",
+                "التركيز العميق ينتج نتائج مذهلة.", "كن أميناً في مواعيدك وعملك.",
+                "التعلم من الأخطاء هو قمة الذكاء.", "العمل بروح الفريق هو سر القوة.",
+                "كن طموحاً ولكن كن واقعياً أيضاً.", "الإبداع يولد من الحاجة.",
+                "النجاح يحتاج لروح مقاتلة.", "كن متواضعاً عند النجاح وشجاعاً عند الفشل.",
+                "العمل الصالح يبقى أثره.", "التنظيم يوفر الوقت والجهد.",
+                "كن دائماً مستعداً للفرص.", "النجاح هو نتيجة الإعداد الجيد.",
+                "الإتقان في العمل هو سر البقاء في القمة.", "كن صبوراً، فالنتائج الرائعة تستغرق وقتاً.",
+                "العمل هو الطريق الوحيد للكرامة.", "الذكاء في العمل يوفر التعب.",
+                "كن صاحب رؤية بعيدة.", "النجاح هو أن تحب ما تفعل.",
+                "الإبداع لا يعرف حدود الزمان والمكان.", "العمل المخلص هو رسالتك للعالم."
             ]
         };
 
-        const colors = { energy: '#00ffcc', calm: '#a78bfa', work: '#fbbf24' };
+        let currentDatabase = JSON.parse(JSON.stringify(masterDatabase));
+        let currentMood = 'energy';
 
         function setMood(mood, btn) {
             currentMood = mood;
             document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            updateCount();
+            
+            const colors = { energy: '#00ffcc', calm: '#a78bfa', work: '#fbbf24' };
             document.documentElement.style.setProperty('--neon-color', colors[mood]);
         }
 
-        function generateAIQuote() {
+        function updateCount() {
+            document.getElementById('count').innerText = currentDatabase[currentMood].length;
+            document.getElementById('mainBtn').disabled = currentDatabase[currentMood].length === 0;
+            if(currentDatabase[currentMood].length === 0) {
+                document.getElementById('mainBtn').innerText = "تم استهلاك جميع الاقتباسات!";
+            } else {
+                document.getElementById('mainBtn').innerText = "أعطني اقتباساً جديداً";
+            }
+        }
+
+        function generateUniqueQuote() {
             const qElement = document.getElementById('quote');
-            const options = aiDatabase[currentMood];
-            const result = options[Math.floor(Math.random() * options.length)];
-            
+            const pool = currentDatabase[currentMood];
+
+            if (pool.length === 0) return;
+
+            const randomIndex = Math.floor(Math.random() * pool.length);
+            const selectedQuote = pool[randomIndex];
+
+            pool.splice(randomIndex, 1);
+
             qElement.style.opacity = 0;
-            qElement.style.transform = "translateY(10px)";
+            qElement.style.transform = "scale(0.9)";
             
             setTimeout(() => {
-                qElement.innerText = result;
+                qElement.innerText = selectedQuote;
                 qElement.style.opacity = 1;
-                qElement.style.transform = "translateY(0)";
+                qElement.style.transform = "scale(1)";
+                updateCount();
             }, 300);
         }
+
+        updateCount();
     </script>
 </body>
 </html>
