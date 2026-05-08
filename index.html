@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مولد الإلهام</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --neon-color: #00ffcc;
@@ -29,6 +30,7 @@
             box-shadow: 0 0 20px var(--neon-color), inset 0 0 10px var(--neon-color);
             max-width: 80%;
             background: rgba(0, 0, 0, 0.8);
+            position: relative;
         }
         h1 {
             font-size: 1.5rem;
@@ -55,11 +57,25 @@
             transition: 0.3s;
             font-weight: bold;
             text-transform: uppercase;
+            margin-bottom: 20px;
         }
         button:hover {
             background: var(--neon-color);
             color: #000;
             box-shadow: 0 0 30px var(--neon-color);
+        }
+        /* تصميم أيقونة الإنستغرام */
+        .instagram-link {
+            display: block;
+            color: var(--neon-color);
+            font-size: 2rem;
+            text-decoration: none;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .instagram-link:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 15px var(--neon-color);
         }
         .footer {
             position: absolute;
@@ -75,6 +91,10 @@
         <h1>✨ جرعة إلهام</h1>
         <div id="quote">اضغط على الزر للحصول على حكمة اليوم..</div>
         <button onclick="generateQuote()">اقتباس جديد</button>
+        
+        <a href="https://www.instagram.com/MC__q" target="_blank" class="instagram-link">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
     </div>
 
     <div class="footer">تم التطوير بواسطة Vercel & GitHub</div>
@@ -98,13 +118,10 @@
             const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
-            // تغيير النص مع حركة بسيطة
             quoteElement.style.opacity = 0;
             setTimeout(() => {
                 quoteElement.innerText = randomQuote;
                 quoteElement.style.opacity = 1;
-                
-                // تغيير اللون الرئيسي للموقع
                 document.documentElement.style.setProperty('--neon-color', randomColor);
             }, 200);
         }
